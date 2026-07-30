@@ -1,0 +1,1003 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Arquifarma S.A.S. — Materias primas y productos de botica</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,450;0,9..144,600;0,9..144,700;1,9..144,500&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream:#F3ECD9;
+    --paper:#FAF6EA;
+    --ink:#242017;
+    --ink-soft:#514b3c;
+    --forest:#1E3B2C;
+    --forest-2:#2C5741;
+    --amber:#B5661C;
+    --amber-soft:#DFA35B;
+    --clay:#9C4630;
+    --sage:#8AA189;
+    --line:#CBBE98;
+    --shadow: 0 18px 40px -22px rgba(30,59,44,0.35);
+    --radius: 3px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--cream);
+    color:var(--ink);
+    font-family:'Inter', sans-serif;
+    font-size:16px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    background-image:
+      radial-gradient(circle at 20% 10%, rgba(30,59,44,0.05), transparent 40%),
+      radial-gradient(circle at 85% 60%, rgba(181,102,28,0.06), transparent 45%);
+    z-index:0;
+  }
+  h1,h2,h3,h4{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    color:var(--forest);
+    margin:0;
+    letter-spacing:-0.01em;
+  }
+  a{color:inherit;}
+  .mono{font-family:'IBM Plex Mono', monospace;}
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.72rem;
+    letter-spacing:0.18em;
+    text-transform:uppercase;
+    color:var(--amber);
+    display:inline-flex;
+    align-items:center;
+    gap:0.6em;
+  }
+  .eyebrow::before{
+    content:"";
+    width:22px;height:1px;
+    background:var(--amber);
+    display:inline-block;
+  }
+  .wrap{
+    max-width:1180px;
+    margin:0 auto;
+    padding:0 32px;
+    position:relative;
+    z-index:1;
+  }
+  section{padding:96px 0;}
+  @media(max-width:720px){ section{padding:64px 0;} .wrap{padding:0 20px;} }
+
+  /* ---------- header ---------- */
+  header{
+    position:sticky; top:0; z-index:50;
+    background:rgba(243,236,217,0.92);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:16px 32px;
+    max-width:1180px; margin:0 auto;
+  }
+  .brand{display:flex; align-items:center; gap:10px; text-decoration:none;}
+  .brand svg{width:34px;height:34px;flex:none;}
+  .brand-word{font-family:'Fraunces',serif; font-weight:700; font-size:1.28rem; color:var(--forest); letter-spacing:-0.01em;}
+  .brand-sub{display:block; font-family:'IBM Plex Mono',monospace; font-size:0.58rem; letter-spacing:0.18em; color:var(--amber); text-transform:uppercase; margin-top:1px;}
+  nav.links{display:flex; gap:30px; align-items:center;}
+  nav.links a{
+    text-decoration:none; color:var(--ink-soft); font-size:0.92rem; font-weight:500;
+    position:relative; padding:4px 0;
+  }
+  nav.links a:hover{color:var(--forest);}
+  .nav-cta{
+    background:var(--forest); color:var(--paper) !important;
+    padding:10px 20px; border-radius:2px; font-size:0.85rem !important; font-weight:600 !important;
+    text-decoration:none;
+  }
+  .nav-cta:hover{background:var(--forest-2);}
+  #menu-toggle{display:none;}
+  .burger{display:none; flex-direction:column; gap:5px; cursor:pointer; background:none; border:none;}
+  .burger span{width:24px;height:2px;background:var(--forest);display:block;}
+  @media(max-width:900px){
+    nav.links{
+      position:absolute; top:100%; left:0; right:0;
+      background:var(--paper); flex-direction:column; align-items:flex-start;
+      padding:20px 32px; gap:16px; border-bottom:1px solid var(--line);
+      display:none;
+    }
+    #menu-toggle:checked ~ nav.links{display:flex;}
+    .burger{display:flex;}
+  }
+
+  /* ---------- hero ---------- */
+  .hero{
+    padding:88px 0 60px;
+    position:relative;
+    overflow:hidden;
+  }
+  .hero-grid{
+    display:grid; grid-template-columns:1.15fr 0.85fr; gap:56px; align-items:center;
+  }
+  @media(max-width:900px){ .hero-grid{grid-template-columns:1fr;} }
+  .hero h1{
+    font-size:clamp(2.4rem, 4.6vw, 3.6rem);
+    line-height:1.05;
+    margin-top:18px;
+  }
+  .hero h1 em{font-style:italic; color:var(--amber); font-weight:500;}
+  .hero p.lede{
+    font-size:1.08rem; color:var(--ink-soft); max-width:46ch; margin-top:20px;
+  }
+  .hero-actions{display:flex; gap:16px; margin-top:34px; flex-wrap:wrap;}
+  .btn{
+    display:inline-flex; align-items:center; gap:8px;
+    padding:14px 26px; border-radius:2px; text-decoration:none;
+    font-weight:600; font-size:0.92rem; border:1px solid transparent; cursor:pointer;
+  }
+  .btn-primary{background:var(--forest); color:var(--paper);}
+  .btn-primary:hover{background:var(--forest-2);}
+  .btn-ghost{border-color:var(--forest); color:var(--forest);}
+  .btn-ghost:hover{background:var(--forest); color:var(--paper);}
+
+  .seal-wrap{display:flex; justify-content:center; align-items:center; position:relative;}
+  .seal{width:min(360px, 90%); height:auto;}
+  .seal-ring-text{font-family:'IBM Plex Mono',monospace; font-size:10.5px; letter-spacing:2px; fill:var(--forest);}
+
+  .ticker{
+    border-top:1px solid var(--line); border-bottom:1px solid var(--line);
+    overflow:hidden; white-space:nowrap; background:var(--paper);
+    margin-top:70px;
+  }
+  .ticker-track{
+    display:inline-flex; gap:0; animation:scroll 32s linear infinite;
+  }
+  .ticker-track span{
+    padding:16px 34px; font-family:'IBM Plex Mono',monospace; font-size:0.78rem;
+    letter-spacing:0.08em; text-transform:uppercase; color:var(--ink-soft);
+    border-right:1px solid var(--line); white-space:nowrap;
+  }
+  .ticker-track span::before{content:"✦ "; color:var(--amber);}
+  @keyframes scroll{ from{transform:translateX(0);} to{transform:translateX(-50%);} }
+  @media (prefers-reduced-motion:reduce){ .ticker-track{animation:none;} }
+
+  /* ---------- section headers ---------- */
+  .sec-head{max-width:640px; margin-bottom:52px;}
+  .sec-head h2{font-size:clamp(1.8rem,3vw,2.5rem); margin-top:14px;}
+  .sec-head p{color:var(--ink-soft); margin-top:14px; font-size:1.02rem;}
+
+  /* ---------- nosotros ---------- */
+  .nosotros{background:var(--forest); color:var(--paper);}
+  .nosotros .eyebrow{color:var(--amber-soft);}
+  .nosotros .eyebrow::before{background:var(--amber-soft);}
+  .nosotros .sec-head h2{color:var(--paper);}
+  .nosotros .sec-head p{color:#cfe0d4;}
+  .about-grid{display:grid; grid-template-columns:1fr 1fr; gap:48px;}
+  @media(max-width:860px){.about-grid{grid-template-columns:1fr;}}
+  .timeline{border-left:1px solid rgba(250,246,234,0.28); padding-left:28px; display:flex; flex-direction:column; gap:30px;}
+  .timeline .tick{position:relative;}
+  .timeline .tick::before{
+    content:""; position:absolute; left:-33px; top:4px; width:9px; height:9px; border-radius:50%;
+    background:var(--amber-soft);
+  }
+  .timeline .yr{font-family:'IBM Plex Mono',monospace; font-size:0.78rem; color:var(--amber-soft); letter-spacing:0.1em;}
+  .timeline p{margin-top:6px; color:#dce9df; max-width:44ch; font-size:0.96rem;}
+  .mv-cards{display:flex; flex-direction:column; gap:22px;}
+  .mv-card{
+    background:rgba(250,246,234,0.06); border:1px solid rgba(250,246,234,0.18);
+    padding:28px; border-radius:3px;
+  }
+  .mv-card h3{color:var(--paper); font-size:1.15rem; display:flex; align-items:center; gap:10px;}
+  .mv-card h3 svg{width:20px;height:20px; stroke:var(--amber-soft);}
+  .mv-card p{color:#dce9df; margin-top:10px; font-size:0.95rem;}
+
+  .gerencia{
+    margin-top:48px; padding-top:44px; border-top:1px solid rgba(250,246,234,0.22);
+    display:grid; grid-template-columns:100px 1fr; gap:30px; align-items:center;
+  }
+  @media(max-width:600px){ .gerencia{grid-template-columns:72px 1fr;} }
+  .gerencia-photo{
+    width:100px; height:100px; border-radius:50%; background:rgba(250,246,234,0.06);
+    display:flex; align-items:center; justify-content:center;
+  }
+  @media(max-width:600px){ .gerencia-photo{width:72px; height:72px;} .gerencia-photo svg{width:52px;} }
+  .gerencia-text h3{color:var(--paper); font-size:1.35rem; margin-top:10px;}
+  .gerencia-role{
+    font-family:'IBM Plex Mono',monospace; font-size:0.74rem; letter-spacing:0.06em; text-transform:uppercase;
+    color:var(--amber-soft);
+  }
+  .gerencia-text p{color:#dce9df; font-size:0.93rem; margin-top:10px; max-width:56ch;}
+  .gerencia-mail{
+    display:inline-flex; align-items:center; gap:8px; margin-top:14px;
+    color:var(--paper); text-decoration:none; font-weight:600; font-size:0.92rem;
+    border-bottom:1px solid var(--amber-soft); padding-bottom:2px;
+  }
+  .gerencia-mail svg{width:16px;height:16px; stroke:var(--amber-soft);}
+  .gerencia-mail:hover{color:var(--amber-soft);}
+
+  /* ---------- lineas ---------- */
+  .lineas-grid{
+    display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:var(--line);
+    border:1px solid var(--line); margin-top:8px;
+  }
+  @media(max-width:900px){.lineas-grid{grid-template-columns:repeat(2,1fr);}}
+  @media(max-width:520px){.lineas-grid{grid-template-columns:1fr;}}
+  .linea-item{
+    background:var(--paper); padding:30px 24px; text-decoration:none; color:var(--ink);
+    display:flex; flex-direction:column; gap:14px; transition:background .15s;
+  }
+  .linea-item:hover{background:var(--cream);}
+  .linea-item svg{width:34px;height:34px; stroke:var(--forest);}
+  .linea-item h4{font-size:1.02rem;}
+  .linea-item span{font-size:0.85rem; color:var(--ink-soft);}
+
+  /* ---------- catalogo ---------- */
+  .filters{display:flex; gap:10px; flex-wrap:wrap; margin-bottom:40px;}
+  .filter-btn{
+    font-family:'IBM Plex Mono',monospace; font-size:0.76rem; letter-spacing:0.05em;
+    padding:9px 16px; border:1px solid var(--forest); background:transparent; color:var(--forest);
+    border-radius:20px; cursor:pointer; text-transform:uppercase;
+  }
+  .filter-btn.active, .filter-btn:hover{background:var(--forest); color:var(--paper);}
+  .cat-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:26px;}
+  @media(max-width:980px){.cat-grid{grid-template-columns:repeat(2,1fr);}}
+  @media(max-width:640px){.cat-grid{grid-template-columns:1fr;}}
+  .card{
+    background:var(--paper); border:1px solid var(--line); border-radius:3px;
+    display:flex; flex-direction:column; box-shadow:var(--shadow);
+    overflow:hidden;
+  }
+  .card-top{
+    padding:26px 24px 18px; display:flex; align-items:flex-start; justify-content:space-between; gap:12px;
+    border-bottom:1px dashed var(--line);
+  }
+  .card-icon{
+    width:56px;height:56px; border-radius:50%; background:var(--cream); display:flex; align-items:center; justify-content:center;
+    flex:none; border:1px solid var(--line);
+  }
+  .card-icon svg{width:28px;height:28px; stroke:var(--forest);}
+  .badge{
+    font-family:'IBM Plex Mono',monospace; font-size:0.62rem; letter-spacing:0.08em; text-transform:uppercase;
+    color:var(--amber); border:1px solid var(--amber); padding:4px 8px; border-radius:20px; white-space:nowrap;
+  }
+  .card-body{padding:18px 24px 8px; flex:1;}
+  .card-body h3{font-size:1.18rem;}
+  .card-pres{font-family:'IBM Plex Mono',monospace; font-size:0.74rem; color:var(--ink-soft); margin-top:6px; letter-spacing:0.02em;}
+  .card-desc{margin-top:12px; font-size:0.92rem; color:var(--ink-soft);}
+  .card-foot{padding:16px 24px 24px;}
+  .ficha-toggle{
+    background:none; border:none; padding:0; color:var(--forest); font-weight:600; font-size:0.86rem;
+    cursor:pointer; display:flex; align-items:center; gap:6px;
+  }
+  .ficha-toggle svg{width:14px;height:14px; transition:transform .2s;}
+  .ficha-toggle.open svg{transform:rotate(180deg);}
+  .ficha-panel{
+    max-height:0; overflow:hidden; transition:max-height .3s ease; font-size:0.87rem; color:var(--ink-soft);
+  }
+  .ficha-panel.open{max-height:600px; margin-top:16px;}
+  .ficha-panel h5{
+    font-family:'IBM Plex Mono',monospace; font-size:0.68rem; letter-spacing:0.1em; text-transform:uppercase;
+    color:var(--forest); margin-top:14px;
+  }
+  .ficha-panel h5:first-child{margin-top:0;}
+  .ficha-panel ul{margin:8px 0 0; padding-left:18px;}
+  .ficha-panel li{margin-bottom:4px;}
+  .caution{
+    margin-top:14px; padding:10px 12px; background:#F6E4DB; border-left:3px solid var(--clay);
+    font-size:0.8rem; color:#5b2c1c;
+  }
+
+  /* ---------- calidad ---------- */
+  .calidad{background:var(--paper); border-top:1px solid var(--line); border-bottom:1px solid var(--line);}
+  .cal-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--line); border:1px solid var(--line); margin-top:8px;}
+  @media(max-width:860px){.cal-grid{grid-template-columns:1fr;}}
+  .cal-item{background:var(--paper); padding:34px 28px;}
+  .cal-item .num{font-family:'IBM Plex Mono',monospace; color:var(--amber); font-size:0.8rem; letter-spacing:0.1em;}
+  .cal-item h3{font-size:1.1rem; margin-top:10px;}
+  .cal-item p{font-size:0.9rem; color:var(--ink-soft); margin-top:10px;}
+
+  /* ---------- presencia ---------- */
+  .presencia-grid{display:grid; grid-template-columns:1.1fr 0.9fr; gap:56px; align-items:center;}
+  @media(max-width:860px){.presencia-grid{grid-template-columns:1fr;}}
+  .chain-list{display:flex; flex-direction:column; gap:16px; margin-top:28px;}
+  .chain{
+    display:flex; align-items:center; justify-content:space-between; gap:16px;
+    padding:18px 22px; background:var(--paper); border:1px solid var(--line); border-radius:3px;
+  }
+  .chain b{font-family:'Fraunces',serif; font-size:1.05rem; color:var(--forest);}
+  .chain span{font-size:0.82rem; color:var(--ink-soft);}
+  .map-card{
+    background:var(--forest); color:var(--paper); border-radius:3px; padding:38px 32px;
+    display:flex; flex-direction:column; gap:18px;
+  }
+  .map-card h3{color:var(--paper); font-size:1.2rem;}
+  .map-card p{color:#dce9df; font-size:0.92rem;}
+  .stat-row{display:flex; gap:26px; margin-top:8px; flex-wrap:wrap;}
+  .stat{}
+  .stat b{display:block; font-family:'Fraunces',serif; font-size:1.6rem; color:var(--amber-soft);}
+  .stat span{font-size:0.76rem; color:#cfe0d4; text-transform:uppercase; letter-spacing:0.06em;}
+
+  /* ---------- contacto ---------- */
+  .contact-grid{display:grid; grid-template-columns:0.9fr 1.1fr; gap:56px;}
+  @media(max-width:860px){.contact-grid{grid-template-columns:1fr;}}
+  .contact-info p{color:var(--ink-soft); margin-top:16px; font-size:0.95rem;}
+  .info-line{display:flex; gap:14px; align-items:flex-start; margin-top:20px;}
+  .info-line svg{width:20px;height:20px; stroke:var(--amber); flex:none; margin-top:2px;}
+  .info-line div b{display:block; font-size:0.92rem; color:var(--forest);}
+  .info-line div span{font-size:0.86rem; color:var(--ink-soft);}
+  form{background:var(--paper); border:1px solid var(--line); padding:32px; border-radius:3px; display:flex; flex-direction:column; gap:16px;}
+  .field label{display:block; font-size:0.78rem; text-transform:uppercase; letter-spacing:0.06em; color:var(--ink-soft); margin-bottom:6px; font-family:'IBM Plex Mono',monospace;}
+  .field input, .field select, .field textarea{
+    width:100%; padding:12px 14px; border:1px solid var(--line); border-radius:2px; background:var(--cream);
+    font-family:'Inter',sans-serif; font-size:0.92rem; color:var(--ink);
+  }
+  .field textarea{resize:vertical; min-height:100px;}
+  .row-2{display:grid; grid-template-columns:1fr 1fr; gap:16px;}
+  @media(max-width:520px){.row-2{grid-template-columns:1fr;}}
+
+  footer{background:var(--ink); color:#c9c2ac; padding:56px 0 28px;}
+  .foot-grid{display:grid; grid-template-columns:1.4fr 1fr 1fr; gap:40px;}
+  @media(max-width:720px){.foot-grid{grid-template-columns:1fr; gap:28px;}}
+  footer .brand-word{color:var(--paper);}
+  footer p{font-size:0.86rem; color:#a49c85; margin-top:12px; max-width:38ch;}
+  footer h5{font-family:'IBM Plex Mono',monospace; font-size:0.72rem; letter-spacing:0.1em; text-transform:uppercase; color:#8a8367; margin-bottom:14px;}
+  footer ul{list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:10px;}
+  footer a{text-decoration:none; color:#c9c2ac; font-size:0.88rem;}
+  footer a:hover{color:var(--amber-soft);}
+  .foot-bottom{
+    max-width:1180px; margin:44px auto 0; padding:24px 32px 0; border-top:1px solid #3a3627;
+    display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px; font-size:0.78rem; color:#79725c;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav">
+    <a href="#inicio" class="brand">
+      <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="20" cy="20" r="19" stroke="#1E3B2C" stroke-width="1.4"/>
+        <path d="M13 24c0-5 3-8 7-13 4 5 7 8 7 13a7 7 0 0 1-14 0Z" stroke="#1E3B2C" stroke-width="1.4" fill="none"/>
+        <path d="M13 24h14" stroke="#B5661C" stroke-width="1.4"/>
+      </svg>
+      <span>
+        <span class="brand-word">Arquifarma</span>
+        <span class="brand-sub">S.A.S. · Bogotá</span>
+      </span>
+    </a>
+    <input type="checkbox" id="menu-toggle">
+    <nav class="links">
+      <a href="#nosotros">Nosotros</a>
+      <a href="#lineas">Líneas</a>
+      <a href="#catalogo">Productos</a>
+      <a href="#calidad">Calidad</a>
+      <a href="#presencia">Dónde comprar</a>
+      <a href="#contacto" class="nav-cta">Solicitar catálogo</a>
+    </nav>
+    <label for="menu-toggle" class="burger"><span></span><span></span><span></span></label>
+  </div>
+</header>
+
+<main id="inicio">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap">
+      <div class="hero-grid">
+        <div>
+          <span class="eyebrow">Desde 2015 · Bogotá, Colombia</span>
+          <h1>Los básicos de botica, <em>hechos con el rigor</em> de una farmacéutica.</h1>
+          <p class="lede">Arquifarma S.A.S. comercializa materias primas y productos tradicionales de cuidado personal y hogar — vaselina, glicerina, aceites, sales y bicarbonato — con estándares de calidad farmacéutica para droguerías, distribuidores y cadenas de todo el país.</p>
+          <div class="hero-actions">
+            <a href="#catalogo" class="btn btn-primary">Ver catálogo de productos</a>
+            <a href="#contacto" class="btn btn-ghost">Hablar con ventas</a>
+          </div>
+        </div>
+        <div class="seal-wrap">
+          <svg class="seal" viewBox="0 0 320 320" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <path id="ringPath" d="M 160,160 m -128,0 a 128,128 0 1,1 256,0 a 128,128 0 1,1 -256,0" />
+            </defs>
+            <circle cx="160" cy="160" r="150" fill="var(--paper)" stroke="var(--forest)" stroke-width="1.4"/>
+            <circle cx="160" cy="160" r="128" fill="none" stroke="var(--forest)" stroke-width="1"/>
+            <circle cx="160" cy="160" r="118" fill="none" stroke="var(--amber)" stroke-width="1" stroke-dasharray="2 4"/>
+            <text class="seal-ring-text">
+              <textPath href="#ringPath" startOffset="0%">
+                ARQUIFARMA S.A.S. · COMERCIALIZADORA FARMACÉUTICA · BOGOTÁ D.C. ·
+              </textPath>
+            </text>
+            <g transform="translate(160,168)">
+              <path d="M-42 20c0-24 14-38 22-58 8 20 22 34 22 58a22 22 0 0 1-44 0Z" fill="none" stroke="var(--forest)" stroke-width="2"/>
+              <path d="M-42 20h44" stroke="var(--amber)" stroke-width="2"/>
+              <path d="M-30 -6 q10 -14 22 0" fill="none" stroke="var(--sage)" stroke-width="1.6"/>
+            </g>
+            <text x="160" y="238" text-anchor="middle" font-family="Fraunces, serif" font-weight="600" font-size="15" fill="var(--forest)">EST. 2015</text>
+          </svg>
+        </div>
+      </div>
+    </div>
+    <div class="ticker" aria-hidden="true">
+      <div class="ticker-track">
+        <span>Vaselina Pura</span><span>Glicerina Pura</span><span>Aceite Mineral</span><span>Aceite de Ricino</span><span>Aceite de Almendras</span><span>Sal de Epsom</span><span>Bicarbonato de Sodio</span><span>Ácido Bórico</span>
+        <span>Vaselina Pura</span><span>Glicerina Pura</span><span>Aceite Mineral</span><span>Aceite de Ricino</span><span>Aceite de Almendras</span><span>Sal de Epsom</span><span>Bicarbonato de Sodio</span><span>Ácido Bórico</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- NOSOTROS -->
+  <section class="nosotros" id="nosotros">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="eyebrow">Nosotros</span>
+        <h2>Una pyme farmacéutica bogotana, construida producto a producto.</h2>
+        <p>Arquifarma se constituyó ante la Cámara de Comercio de Bogotá el 17 de junio de 2015. Como comercializadora, no fabricamos: seleccionamos y distribuimos productos elaborados por proveedores certificados —como la marca Quiteco— para garantizar trazabilidad y consistencia en cada lote que llega a nuestros clientes.</p>
+      </div>
+      <div class="about-grid">
+        <div class="timeline">
+          <div class="tick">
+            <div class="yr">2015</div>
+            <p>Constitución legal de Arquifarma S.A.S. en Bogotá, con vocación de comercializar productos farmacéuticos tradicionales de alta rotación.</p>
+          </div>
+          <div class="tick">
+            <div class="yr">Portafolio</div>
+            <p>Consolidación de una línea de ocho productos base —vaselina, glicerina, aceites, sales y bicarbonato— con múltiples presentaciones por referencia.</p>
+          </div>
+          <div class="tick">
+            <div class="yr">Canales</div>
+            <p>Presencia en las principales cadenas de droguerías del país, tanto en punto físico como en canales de comercio electrónico.</p>
+          </div>
+          <div class="tick">
+            <div class="yr">Hoy</div>
+            <p>Un equipo pequeño y cercano que atiende directamente a droguerías, distribuidores y clientes institucionales en todo el territorio nacional.</p>
+          </div>
+        </div>
+        <div class="mv-cards">
+          <div class="mv-card">
+            <h3><svg viewBox="0 0 24 24" fill="none"><path d="M12 3v18M5 8l7-5 7 5M5 8v9a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8" stroke-width="1.4"/></svg>Misión</h3>
+            <p>Comercializar productos farmacéuticos de alta calidad, con procesos de mejora continua que respondan a las necesidades reales de nuestros clientes y contribuyan al bienestar y la calidad de vida de las personas.</p>
+          </div>
+          <div class="mv-card">
+            <h3><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="3" stroke-width="1.4"/><path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7-10-7-10-7Z" stroke-width="1.4"/></svg>Visión</h3>
+            <p>Ser una empresa líder en el mercado nacional en la comercialización de productos farmacéuticos de vanguardia, cumpliendo con los más altos estándares de calidad.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="gerencia">
+        <div class="gerencia-photo" aria-hidden="true">
+          <svg viewBox="0 0 100 100" fill="none">
+            <circle cx="50" cy="50" r="49" stroke="var(--amber-soft)" stroke-width="1" stroke-dasharray="3 4"/>
+            <circle cx="50" cy="36" r="16" stroke="var(--paper)" stroke-width="1.6"/>
+            <path d="M20 88c3-20 15-30 30-30s27 10 30 30" stroke="var(--paper)" stroke-width="1.6" fill="none"/>
+          </svg>
+        </div>
+        <div class="gerencia-text">
+          <span class="eyebrow">Cerca de nosotros</span>
+          <h3>Piedad Núñez Velásquez</h3>
+          <span class="gerencia-role">Gerente General, Arquifarma S.A.S.</span>
+          <p>Al frente de la compañía desde su día a día en Bogotá, coordinando directamente con droguerías, distribuidores y proveedores certificados cada pedido que sale de Arquifarma.</p>
+          <a class="gerencia-mail" href="mailto:gerencia@arquifarma.co">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
+            gerencia@arquifarma.co
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LINEAS -->
+  <section id="lineas">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="eyebrow">Portafolio</span>
+        <h2>Seis líneas, ocho referencias, un mismo estándar.</h2>
+        <p>Cada línea agrupa presentaciones pensadas para el mostrador de droguería: del gramaje pequeño de consumo doméstico al empaque mayor para distribución.</p>
+      </div>
+      <div class="lineas-grid">
+        <a href="#p-vaselina" class="linea-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.4"><rect x="7" y="6" width="10" height="15" rx="1.5"/><path d="M9 6V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/><path d="M7 11h10"/></svg>
+          <h4>Vaselina Pura</h4>
+          <span>28 g · 105 g · 460 g</span>
+        </a>
+        <a href="#p-glicerina" class="linea-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.4"><path d="M9 3h6v4l3 6v6a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2v-6l3-6V3Z"/><path d="M8 13h8"/></svg>
+          <h4>Glicerina Pura</h4>
+          <span>240 ml · 450 ml</span>
+        </a>
+        <a href="#p-aceite-mineral" class="linea-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.4"><path d="M9 3h6v4l3 6v6a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2v-6l3-6V3Z"/><path d="M8 14h8"/></svg>
+          <h4>Aceite Mineral</h4>
+          <span>240 ml · 450 ml</span>
+        </a>
+        <a href="#p-ricino" class="linea-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.4"><path d="M10 3h4v3l2 4v9a2 2 0 0 1-2 2h-4a2 2 0 0 1-2-2v-9l2-4V3Z"/><circle cx="12" cy="14" r="1"/></svg>
+          <h4>Aceite de Ricino</h4>
+          <span>30 ml</span>
+        </a>
+        <a href="#p-almendras" class="linea-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.4"><path d="M9 3h6v4l3 6v6a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2v-6l3-6V3Z"/><path d="M12 10c1.5 0 2.5 1.5 2.5 3S13.5 16 12 16s-2.5-1.5-2.5-3S10.5 10 12 10Z"/></svg>
+          <h4>Aceite de Almendras</h4>
+          <span>240 ml · 500 ml</span>
+        </a>
+        <a href="#p-epsom" class="linea-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.4"><path d="M7 8c0-2 2-4 5-4s5 2 5 4c2 0 3 2 3 4v6a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-6c0-2 1-4 3-4Z"/></svg>
+          <h4>Sal de Epsom</h4>
+          <span>100 g · 400 g</span>
+        </a>
+        <a href="#p-bicarbonato" class="linea-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.4"><path d="M7 8c0-2 2-4 5-4s5 2 5 4c2 0 3 2 3 4v6a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-6c0-2 1-4 3-4Z"/><path d="M9 12h6"/></svg>
+          <h4>Bicarbonato de Sodio</h4>
+          <span>100 g · 400 g</span>
+        </a>
+        <a href="#p-borico" class="linea-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.4"><rect x="4" y="7" width="16" height="13" rx="1"/><path d="M4 11h16"/><path d="M9 7V5h6v2"/></svg>
+          <h4>Ácido Bórico</h4>
+          <span>100 g · 400 g</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CATALOGO -->
+  <section id="catalogo">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="eyebrow">Catálogo</span>
+        <h2>Ficha por ficha, tal como sale de nuestros documentos técnicos.</h2>
+        <p>Descripción breve, características y usos de cada referencia. Despliega la ficha técnica para el detalle completo de conservación y manejo.</p>
+      </div>
+
+      <div class="filters">
+        <button class="filter-btn active" data-filter="all">Todas</button>
+        <button class="filter-btn" data-filter="cuidado-piel">Cuidado de la piel</button>
+        <button class="filter-btn" data-filter="aceites">Aceites</button>
+        <button class="filter-btn" data-filter="sales">Sales y polvos</button>
+      </div>
+
+      <div class="cat-grid">
+
+        <!-- VASELINA -->
+        <article class="card" id="p-vaselina" data-cat="cuidado-piel">
+          <div class="card-top">
+            <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.4"><rect x="7" y="6" width="10" height="15" rx="1.5"/><path d="M9 6V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/><path d="M7 11h10"/></svg></div>
+            <span class="badge">USP / FDA</span>
+          </div>
+          <div class="card-body">
+            <h3>Vaselina Pura</h3>
+            <div class="card-pres">Tubo × 28 g · Tarro × 105 g · Pote × 460 g · Marca Quiteco</div>
+            <p class="card-desc">Jalea de petrolato grado farmacéutico, de aspecto pastoso y color amarillo-crema. Obtenida por alta refinación, libre de compuestos nocivos y elaborada bajo normas USP y FDA.</p>
+          </div>
+          <div class="card-foot">
+            <button class="ficha-toggle">Ver ficha técnica <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button>
+            <div class="ficha-panel">
+              <h5>Características</h5>
+              <ul>
+                <li>Sin olor ni sabor; no mancha ni es corrosiva.</li>
+                <li>Fácil mezcla con aceites, ceras y otros derivados del petróleo.</li>
+                <li>Vehículo neutro, estéril, estable e inocuo.</li>
+                <li>Buenas propiedades lubricantes, de plasticidad y penetración.</li>
+              </ul>
+              <h5>Usos</h5>
+              <ul>
+                <li>Materia prima en la industria farmacéutica y cosmética (cremas, ungüentos, labiales, brillos).</li>
+                <li>Suavizante de la piel y desmaquillante.</li>
+                <li>Lubricación liviana y protección de metales contra el óxido.</li>
+              </ul>
+              <h5>Conservación</h5>
+              <ul><li>Envase original bien cerrado, al abrigo de la luz y el calor, entre 20 °C y 40 °C, humedad relativa 54–87 %.</li></ul>
+            </div>
+          </div>
+        </article>
+
+        <!-- GLICERINA -->
+        <article class="card" id="p-glicerina" data-cat="cuidado-piel">
+          <div class="card-top">
+            <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.4"><path d="M9 3h6v4l3 6v6a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2v-6l3-6V3Z"/><path d="M8 13h8"/></svg></div>
+            <span class="badge">Humectante</span>
+          </div>
+          <div class="card-body">
+            <h3>Glicerina Pura</h3>
+            <div class="card-pres">Frasco × 240 ml · Frasco × 450 ml</div>
+            <p class="card-desc">Humectante multiusos de alta pureza: líquido viscoso, incoloro e inodoro, con una notable capacidad de atraer y retener agua.</p>
+          </div>
+          <div class="card-foot">
+            <button class="ficha-toggle">Ver ficha técnica <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button>
+            <div class="ficha-panel">
+              <h5>Características</h5>
+              <ul>
+                <li>Soluble en agua y en alcohol.</li>
+                <li>Textura untuosa, no tóxica en aplicación tópica.</li>
+                <li>Compatible con la mayoría de formulaciones cosméticas y farmacéuticas.</li>
+              </ul>
+              <h5>Usos</h5>
+              <ul>
+                <li>Hidratante para piel y cabello.</li>
+                <li>Base para jarabes y preparados farmacéuticos.</li>
+                <li>Ingrediente en jabonería y cosmética casera.</li>
+              </ul>
+              <h5>Conservación</h5>
+              <ul><li>Envase original bien cerrado, en lugar fresco y seco, lejos de la luz directa.</li></ul>
+            </div>
+          </div>
+        </article>
+
+        <!-- ACEITE MINERAL -->
+        <article class="card" id="p-aceite-mineral" data-cat="aceites">
+          <div class="card-top">
+            <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.4"><path d="M9 3h6v4l3 6v6a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2v-6l3-6V3Z"/><path d="M8 14h8"/></svg></div>
+            <span class="badge">Emoliente</span>
+          </div>
+          <div class="card-body">
+            <h3>Aceite Mineral</h3>
+            <div class="card-pres">Frasco × 240 ml · Frasco × 450 ml</div>
+            <p class="card-desc">Aceite incoloro e inodoro derivado del petróleo, de alta refinación y grado farmacéutico. Se usa como emoliente y como vehículo oleoso en formulaciones.</p>
+          </div>
+          <div class="card-foot">
+            <button class="ficha-toggle">Ver ficha técnica <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button>
+            <div class="ficha-panel">
+              <h5>Características</h5>
+              <ul>
+                <li>Químicamente inerte; no se enrancia.</li>
+                <li>Buena capacidad lubricante; no mancha textiles.</li>
+              </ul>
+              <h5>Usos</h5>
+              <ul>
+                <li>Emoliente para piel seca.</li>
+                <li>Vehículo en la elaboración de cremas y lociones.</li>
+                <li>Lubricación liviana de uso doméstico; mantenimiento de madera y cuero.</li>
+              </ul>
+              <h5>Conservación</h5>
+              <ul><li>Envase bien cerrado, alejado de fuentes de calor.</li></ul>
+            </div>
+          </div>
+        </article>
+
+        <!-- ACEITE DE RICINO -->
+        <article class="card" id="p-ricino" data-cat="aceites">
+          <div class="card-top">
+            <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.4"><path d="M10 3h4v3l2 4v9a2 2 0 0 1-2 2h-4a2 2 0 0 1-2-2v-9l2-4V3Z"/><circle cx="12" cy="14" r="1"/></svg></div>
+            <span class="badge">Marca Quiteco</span>
+          </div>
+          <div class="card-body">
+            <h3>Aceite de Ricino</h3>
+            <div class="card-pres">Frasco × 30 ml</div>
+            <p class="card-desc">Aceite vegetal obtenido de la semilla de ricino (Ricinus communis), con más del 80 % de ácido ricinoleico, responsable de sus propiedades características.</p>
+          </div>
+          <div class="card-foot">
+            <button class="ficha-toggle">Ver ficha técnica <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button>
+            <div class="ficha-panel">
+              <h5>Características</h5>
+              <ul>
+                <li>Líquido amarillo, viscoso, soluble en alcohol.</li>
+                <li>≈70 % de triglicéridos del ácido ricinoleico.</li>
+              </ul>
+              <h5>Usos</h5>
+              <ul>
+                <li>Laxante tradicional de uso ocasional.</li>
+                <li>Ingrediente en cosmética casera y capilar.</li>
+                <li>Materia prima para jabones y ungüentos.</li>
+              </ul>
+              <div class="caution">Uso oral solo bajo orientación de un profesional de la salud. No administrar a niños pequeños ni durante el embarazo sin indicación médica.</div>
+            </div>
+          </div>
+        </article>
+
+        <!-- ACEITE DE ALMENDRAS -->
+        <article class="card" id="p-almendras" data-cat="aceites">
+          <div class="card-top">
+            <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.4"><path d="M9 3h6v4l3 6v6a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2v-6l3-6V3Z"/><path d="M12 10c1.5 0 2.5 1.5 2.5 3S13.5 16 12 16s-2.5-1.5-2.5-3S10.5 10 12 10Z"/></svg></div>
+            <span class="badge">Marca Quiteco</span>
+          </div>
+          <div class="card-body">
+            <h3>Aceite de Almendras</h3>
+            <div class="card-pres">Frasco × 240 ml · Frasco × 500 ml</div>
+            <p class="card-desc">Aceite vegetal extraído de almendras dulces (Prunus amygdalus dulcis), de textura ligera y absorción rápida, clásico de la cosmética natural.</p>
+          </div>
+          <div class="card-foot">
+            <button class="ficha-toggle">Ver ficha técnica <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button>
+            <div class="ficha-panel">
+              <h5>Características</h5>
+              <ul>
+                <li>Color amarillo pálido, olor característico suave.</li>
+                <li>Insoluble en agua; densidad relativa ≈0,910–0,920 g/cm³.</li>
+              </ul>
+              <h5>Usos</h5>
+              <ul>
+                <li>Hidratación profunda de piel y cabello.</li>
+                <li>Alivio de piel seca o irritada; prevención de estrías.</li>
+                <li>Desmaquillante suave y tratamiento para labios agrietados.</li>
+              </ul>
+              <h5>Conservación</h5>
+              <ul><li>Envase original bien cerrado, al abrigo de la luz y el calor.</li></ul>
+            </div>
+          </div>
+        </article>
+
+        <!-- SAL DE EPSOM -->
+        <article class="card" id="p-epsom" data-cat="sales">
+          <div class="card-top">
+            <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.4"><path d="M7 8c0-2 2-4 5-4s5 2 5 4c2 0 3 2 3 4v6a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-6c0-2 1-4 3-4Z"/></svg></div>
+            <span class="badge">≥99 % pureza</span>
+          </div>
+          <div class="card-body">
+            <h3>Sal de Epsom</h3>
+            <div class="card-pres">Bolsa × 100 g · Bolsa × 400 g · Sulfato de magnesio</div>
+            <p class="card-desc">Sulfato de magnesio de alta pureza, en cristales finos en forma de aguja, totalmente soluble en agua y libre de materiales inertes.</p>
+          </div>
+          <div class="card-foot">
+            <button class="ficha-toggle">Ver ficha técnica <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button>
+            <div class="ficha-panel">
+              <h5>Características</h5>
+              <ul>
+                <li>Cristales incoloros; pH entre 6 y 7.</li>
+                <li>Pureza mínima del 99 %.</li>
+              </ul>
+              <h5>Usos</h5>
+              <ul>
+                <li>Sales de baño para relajación muscular.</li>
+                <li>Laxante salino tradicional de uso ocasional.</li>
+                <li>Fuente de magnesio como coadyuvante en jardinería.</li>
+              </ul>
+              <h5>Conservación</h5>
+              <ul><li>Lugar fresco y seco. Tiende a absorber humedad ambiental: mantener bien cerrada.</li></ul>
+            </div>
+          </div>
+        </article>
+
+        <!-- BICARBONATO -->
+        <article class="card" id="p-bicarbonato" data-cat="sales">
+          <div class="card-top">
+            <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.4"><path d="M7 8c0-2 2-4 5-4s5 2 5 4c2 0 3 2 3 4v6a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-6c0-2 1-4 3-4Z"/><path d="M9 12h6"/></svg></div>
+            <span class="badge">≥99 % pureza</span>
+          </div>
+          <div class="card-body">
+            <h3>Bicarbonato de Sodio</h3>
+            <div class="card-pres">Bolsa × 100 g · Bolsa × 400 g</div>
+            <p class="card-desc">Polvo blanco cristalino de sabor refrescante y ligeramente alcalino, soluble en agua, estable en aire seco.</p>
+          </div>
+          <div class="card-foot">
+            <button class="ficha-toggle">Ver ficha técnica <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button>
+            <div class="ficha-panel">
+              <h5>Características</h5>
+              <ul>
+                <li>pH máximo 8,6; insoluble en alcohol.</li>
+                <li>Se descompone liberando CO₂ con el calor.</li>
+                <li>No reporta irritación en piel ni ojos en condiciones normales de uso.</li>
+              </ul>
+              <h5>Usos</h5>
+              <ul>
+                <li>Multiusos en el hogar: limpieza, repostería, higiene bucal.</li>
+                <li>Preparación de bebidas y sales efervescentes.</li>
+                <li>Uso industrial en curtiembres y tratamiento textil.</li>
+              </ul>
+              <h5>Conservación</h5>
+              <ul><li>Lugar fresco, ventilado y seco; alejado de ácidos y agentes oxidantes fuertes.</li></ul>
+            </div>
+          </div>
+        </article>
+
+        <!-- ACIDO BORICO -->
+        <article class="card" id="p-borico" data-cat="sales">
+          <div class="card-top">
+            <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.4"><rect x="4" y="7" width="16" height="13" rx="1"/><path d="M4 11h16"/><path d="M9 7V5h6v2"/></svg></div>
+            <span class="badge">Uso externo</span>
+          </div>
+          <div class="card-body">
+            <h3>Ácido Bórico</h3>
+            <div class="card-pres">Caja × 100 g · Bolsa × 400 g · H₃BO₃</div>
+            <p class="card-desc">Ácido bórico grado técnico, de pureza mínima 99,8 %, en presentación granular o en polvo, estable y soluble en agua, alcohol y glicerina.</p>
+          </div>
+          <div class="card-foot">
+            <button class="ficha-toggle">Ver ficha técnica <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button>
+            <div class="ficha-panel">
+              <h5>Características</h5>
+              <ul>
+                <li>Peso molecular 61,83; ácido débil.</li>
+                <li>Disponible en tipo granulado o en polvo.</li>
+              </ul>
+              <h5>Usos</h5>
+              <ul>
+                <li>Antiséptico tópico de uso externo tradicional.</li>
+                <li>Retardante de fuego y preservante de madera.</li>
+                <li>Insumo industrial: cerámica, vidrio, curtiembres.</li>
+              </ul>
+              <div class="caution">Uso externo únicamente. Mantener fuera del alcance de los niños; no ingerir. En caso de contacto con ojos o piel, lavar con abundante agua durante 15 minutos y consultar al médico.</div>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- CALIDAD -->
+  <section class="calidad" id="calidad">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="eyebrow">Compromiso de calidad</span>
+        <h2>Comercializar bien empieza por elegir bien.</h2>
+        <p>No fabricamos, y eso nos exige más al momento de escoger con quién trabajamos. Así garantizamos cada referencia que sale de nuestra bodega.</p>
+      </div>
+      <div class="cal-grid">
+        <div class="cal-item">
+          <div class="num mono">01</div>
+          <h3>Proveedores certificados</h3>
+          <p>Trabajamos con fabricantes que cumplen normas técnicas reconocidas —como USP y FDA en el caso de vaselina y derivados— y exigimos ficha técnica por lote.</p>
+        </div>
+        <div class="cal-item">
+          <div class="num mono">02</div>
+          <h3>Condiciones de almacenamiento</h3>
+          <p>Cada línea se conserva según su ficha técnica: temperatura controlada entre 20 °C y 40 °C y humedad relativa entre 54 % y 87 % para los productos sensibles.</p>
+        </div>
+        <div class="cal-item">
+          <div class="num mono">03</div>
+          <h3>Información al droguista</h3>
+          <p>Entregamos ficha técnica completa —descripción, especificaciones, usos y primeros auxilios— para que cada punto de venta informe bien al consumidor final.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRESENCIA -->
+  <section id="presencia">
+    <div class="wrap">
+      <div class="presencia-grid">
+        <div>
+          <span class="eyebrow">Dónde comprar</span>
+          <h2 style="margin-top:14px; font-size:clamp(1.8rem,3vw,2.4rem);">Nuestros productos ya están en el punto de venta que conoces.</h2>
+          <p style="color:var(--ink-soft); margin-top:16px;">Arquifarma tiene presencia en las principales cadenas de droguerías de Colombia, tanto en tienda física como en sus canales de comercio electrónico, con cobertura en Bogotá y otras ciudades del país.</p>
+          <div class="chain-list">
+            <div class="chain">
+              <div><b>Droguerías Colsubsidio</b><br><span>Catálogo en línea con búsqueda por marca Arquifarma</span></div>
+              <span class="mono">colsubsidio.com</span>
+            </div>
+            <div class="chain">
+              <div><b>Droguerías Cafam</b><br><span>Referencias organizadas por fabricante, con precio por unidad de medida</span></div>
+              <span class="mono">cafam.com.co</span>
+            </div>
+          </div>
+        </div>
+        <div class="map-card">
+          <h3>¿Eres droguería o distribuidor?</h3>
+          <p>Si tu punto de venta aún no maneja nuestras referencias, escríbenos para conocer condiciones comerciales, tiempos de entrega y pedido mínimo.</p>
+          <div class="stat-row">
+            <div class="stat"><b>8</b><span>Referencias base</span></div>
+            <div class="stat"><b>13+</b><span>Presentaciones</span></div>
+            <div class="stat"><b>2015</b><span>Año de fundación</span></div>
+          </div>
+          <a href="#contacto" class="btn btn-primary" style="align-self:flex-start; margin-top:8px; background:var(--amber);">Solicitar información comercial</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACTO -->
+  <section id="contacto">
+    <div class="wrap">
+      <div class="contact-grid">
+        <div class="contact-info">
+          <span class="eyebrow">Contacto</span>
+          <h2 style="margin-top:14px; font-size:clamp(1.8rem,3vw,2.3rem);">Cuéntanos qué necesitas para tu droguería.</h2>
+          <p>Nuestro equipo comercial responde solicitudes de catálogo, cotizaciones y disponibilidad por referencia.</p>
+          <div class="info-line">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
+            <div><b>Correo — Gerencia</b><span><a href="mailto:gerencia@arquifarma.co" style="color:var(--ink-soft); text-decoration:underline;">gerencia@arquifarma.co</a></span></div>
+          </div>
+          <div class="info-line">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4 2h3a2 2 0 0 1 2 1.7c.1.9.3 1.8.6 2.7a2 2 0 0 1-.5 2.1L7.9 9.7a16 16 0 0 0 6 6l1.2-1.2a2 2 0 0 1 2.1-.5c.9.3 1.8.5 2.7.6a2 2 0 0 1 1.7 2.1Z"/></svg>
+            <div><b>Línea comercial</b><span>[teléfono de contacto]</span></div>
+          </div>
+          <div class="info-line">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><path d="M21 10c0 7-9 12-9 12S3 17 3 10a9 9 0 0 1 18 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+            <div><b>Ubicación</b><span>Bogotá D.C., Colombia</span></div>
+          </div>
+          <div class="info-line">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+            <div><b>Horario de atención</b><span>Lunes a viernes, horario comercial</span></div>
+          </div>
+        </div>
+        <form onsubmit="event.preventDefault(); this.querySelector('.form-status').textContent='Gracias — hemos registrado tu solicitud. Te contactaremos pronto.';">
+          <div class="row-2">
+            <div class="field"><label for="nombre">Nombre</label><input id="nombre" type="text" placeholder="Tu nombre" required></div>
+            <div class="field"><label for="empresa">Droguería / empresa</label><input id="empresa" type="text" placeholder="Nombre del negocio"></div>
+          </div>
+          <div class="row-2">
+            <div class="field"><label for="correo">Correo</label><input id="correo" type="email" placeholder="tucorreo@ejemplo.com" required></div>
+            <div class="field"><label for="ciudad">Ciudad</label><input id="ciudad" type="text" placeholder="Bogotá, Medellín, ..."></div>
+          </div>
+          <div class="field">
+            <label for="interes">Me interesa</label>
+            <select id="interes">
+              <option>Solicitar catálogo completo</option>
+              <option>Cotización por producto</option>
+              <option>Convertirme en distribuidor</option>
+              <option>Otro</option>
+            </select>
+          </div>
+          <div class="field"><label for="mensaje">Mensaje</label><textarea id="mensaje" placeholder="Cuéntanos qué referencias te interesan y en qué cantidades..."></textarea></div>
+          <button type="submit" class="btn btn-primary" style="width:100%; justify-content:center;">Enviar solicitud</button>
+          <p class="form-status" style="font-size:0.84rem; color:var(--forest); min-height:1.2em; margin:0;"></p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap foot-grid">
+    <div>
+      <span class="brand-word">Arquifarma S.A.S.</span>
+      <p>Comercializadora farmacéutica bogotana, constituida en 2015, especializada en productos tradicionales de cuidado personal y hogar para droguerías y distribuidores.</p>
+      <p style="margin-top:16px;">Gerencia: Piedad Núñez Velásquez<br><a href="mailto:gerencia@arquifarma.co">gerencia@arquifarma.co</a></p>
+    </div>
+    <div>
+      <h5>Navegación</h5>
+      <ul>
+        <li><a href="#nosotros">Nosotros</a></li>
+        <li><a href="#lineas">Líneas de producto</a></li>
+        <li><a href="#catalogo">Catálogo</a></li>
+        <li><a href="#calidad">Calidad</a></li>
+        <li><a href="#presencia">Dónde comprar</a></li>
+      </ul>
+    </div>
+    <div>
+      <h5>Líneas</h5>
+      <ul>
+        <li><a href="#p-vaselina">Vaselina Pura</a></li>
+        <li><a href="#p-glicerina">Glicerina Pura</a></li>
+        <li><a href="#p-epsom">Sal de Epsom</a></li>
+        <li><a href="#p-borico">Ácido Bórico</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="foot-bottom">
+    <span>© 2026 Arquifarma S.A.S. — Bogotá, Colombia.</span>
+    <span>Constituida ante la Cámara de Comercio de Bogotá el 17 de junio de 2015.</span>
+  </div>
+</footer>
+
+<script>
+  // ficha técnica toggle
+  document.querySelectorAll('.ficha-toggle').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      const panel = btn.parentElement.querySelector('.ficha-panel');
+      const open = panel.classList.toggle('open');
+      btn.classList.toggle('open', open);
+      btn.firstChild.textContent = open ? 'Ocultar ficha técnica ' : 'Ver ficha técnica ';
+    });
+  });
+
+  // category filters
+  const filterBtns = document.querySelectorAll('.filter-btn');
+  const cards = document.querySelectorAll('.cat-grid .card');
+  filterBtns.forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      filterBtns.forEach(b=>b.classList.remove('active'));
+      btn.classList.add('active');
+      const f = btn.dataset.filter;
+      cards.forEach(card=>{
+        card.style.display = (f==='all' || card.dataset.cat===f) ? '' : 'none';
+      });
+    });
+  });
+
+  // close mobile menu on link click
+  document.querySelectorAll('nav.links a').forEach(a=>{
+    a.addEventListener('click', ()=>{ document.getElementById('menu-toggle').checked = false; });
+  });
+</script>
+
+</body>
+</html>
